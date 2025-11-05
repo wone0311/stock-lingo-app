@@ -270,6 +270,7 @@ return (
         backdropFilter: 'blur(8px)',
         background: 'rgba(255,255,255,0.7)',
         borderBottom: '1px solid #e2e8f0',
+        width: '100vw',
       }}
     >
       <div
