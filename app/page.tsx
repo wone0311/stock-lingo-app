@@ -2,7 +2,7 @@
 
 import React, { useMemo, useState } from "react";
 import { motion } from "framer-motion";
-import { Check, LineChart, Sparkles, Trophy, Flame, Star, BarChart3, BookOpenText, ShieldCheck, PlayCircle, ArrowRight, ChevronRight, Clock, Users } from "lucide-react";
+import { Check, LineChart, Sparkles, Trophy, Flame, Star, BarChart3, BookOpenText, ShieldCheck, PlayCircle, ArrowRight, Clock, Users } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -10,7 +10,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Progress } from "@/components/ui/progress";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 
-/* ───────────────── DemoQuiz ───────────────── */
+/* ================= DemoQuiz ================= */
 const DemoQuiz = ({ onComplete }: { onComplete?: () => void }) => {
   const questions = useMemo(
     () => [
@@ -52,9 +52,7 @@ const DemoQuiz = ({ onComplete }: { onComplete?: () => void }) => {
   const q = questions[index];
 
   const handleNext = () => {
-    if (q.type === "choice" && selected !== null) {
-      if (selected === q.answer) setScore((s) => s + 1);
-    }
+    if (q.type === "choice" && selected !== null) if (selected === q.answer) setScore((s) => s + 1);
     if (q.type === "flash") {
       const ok = (q as any).keyword.every((k: string) => typed.includes(k));
       if (ok) setScore((s) => s + 1);
@@ -98,7 +96,7 @@ const DemoQuiz = ({ onComplete }: { onComplete?: () => void }) => {
           {q.type === 'choice' && (
             <div style={{ display: 'grid', gap: 8 }}>
               {(q as any).options.map((op: string, i: number) => {
-                const active = selected === i
+                const active = selected === i;
                 return (
                   <button
                     key={i}
@@ -120,9 +118,7 @@ const DemoQuiz = ({ onComplete }: { onComplete?: () => void }) => {
                           display: 'flex', alignItems: 'center', justifyContent: 'center',
                         }}
                       >
-                        {active && (
-                          <Check style={{ height: 12, width: 12, color: '#059669' }} />
-                        )}
+                        {active && <Check style={{ height: 12, width: 12, color: '#059669' }} />}
                       </div>
                       <span>{op}</span>
                     </div>
@@ -159,10 +155,7 @@ const DemoQuiz = ({ onComplete }: { onComplete?: () => void }) => {
 
           {q.type === 'order' && (
             <div style={{ display: 'grid', rowGap: 8 }}>
-              <p style={{ fontSize: 14, color: '#475569' }}>
-                카드를 클릭하여 순서대로 정렬하세요.
-              </p>
-
+              <p style={{ fontSize: 14, color: '#475569' }}>카드를 클릭하여 순서대로 정렬하세요.</p>
               <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
                 {((q as any).options as string[]).map((op: string, idx: number) => {
                   const pickedIndex = order.findIndex((x) => x === op);
@@ -181,8 +174,7 @@ const DemoQuiz = ({ onComplete }: { onComplete?: () => void }) => {
                         cursor: picked ? 'default' : 'pointer',
                         opacity: picked ? 0.9 : 1,
                       }}>
-                      {picked ? `${pickedIndex + 1}. ` : ''}
-                      {op}
+                      {picked ? `${pickedIndex + 1}. ` : ''}{op}
                     </button>
                   );
                 })}
@@ -195,13 +187,7 @@ const DemoQuiz = ({ onComplete }: { onComplete?: () => void }) => {
             </div>
           )}
 
-          <div
-            style={{
-              paddingTop: 8,
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'space-between',
-            }}>
+          <div style={{ paddingTop: 8, display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
             <div style={{ fontSize: 14, color: '#64748b' }}>
               점수: {score} / {questions.length}
             </div>
@@ -219,7 +205,7 @@ const DemoQuiz = ({ onComplete }: { onComplete?: () => void }) => {
   )
 }
 
-/* ───────────────── 작은 카드 Feature ───────────────── */
+/* ================= 작은 카드 Feature ================= */
 const Feature = ({ icon: Icon, title, desc }: any) => (
   <Card style={{ height: '100%' }}>
     <CardHeader style={{ paddingBottom: 8 }}>
@@ -238,7 +224,7 @@ const Feature = ({ icon: Icon, title, desc }: any) => (
   </Card>
 );
 
-/* ───────────────── 메인 페이지 ───────────────── */
+/* ================= 메인 페이지 ================= */
 export default function StockLingoPromo() {
   const [open, setOpen] = useState(false);
   const [completed, setCompleted] = useState(false);
@@ -266,16 +252,15 @@ export default function StockLingoPromo() {
                 backgroundColor: '#10b981',
                 display: 'flex',
                 alignItems: 'center',
-                justifyContent: 'center',
+                justifyContent:'center',
                 color: '#fff',
                 fontWeight: 700,
-                flex: '0 0 auto',
               }}
             >
               S
             </div>
-            <div style={{ fontWeight: 600, whiteSpace: 'nowrap' }}>StockLingo</div>
-            <Badge variant="secondary" style={{ marginLeft: 8, whiteSpace: 'nowrap' }}>
+            <div style={{ fontWeight: 600 }}>StockLingo</div>
+            <Badge variant="secondary" style={{ marginLeft: 8 }}>
               알파
             </Badge>
           </div>
@@ -287,11 +272,11 @@ export default function StockLingoPromo() {
             <a href="#faq">FAQ</a>
           </nav>
 
-          <div className="sl-header-actions" style={{ display: 'flex', alignItems: 'center', gap: 8, flex: '0 0 auto' }}>
-            <Button variant="ghost" style={{ borderRadius: 16, whiteSpace: 'nowrap' }}>
+          <div className="sl-header-actions" style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+            <Button variant="ghost" style={{ borderRadius: 16 }}>
               로그인
             </Button>
-            <Button style={{ borderRadius: 16, whiteSpace: 'nowrap' }} onClick={() => setOpen(true)}>
+            <Button style={{ borderRadius: 16 }} onClick={() => setOpen(true)}>
               <PlayCircle style={{ marginRight: 4, height: 16, width: 16 }} />
               체험하기
             </Button>
@@ -304,14 +289,7 @@ export default function StockLingoPromo() {
         <div className="sl-container sl-grid-2 sl-section">
           <div>
             <Badge style={{ backgroundColor: '#10b981', color: '#fff' }}>주식 공부판 듀오링고</Badge>
-            <h1 className="sl-hero-title"
-              style={{
-                marginTop: 12,
-                fontSize: 40,
-                fontWeight: 800,
-                letterSpacing: '-0.02em',
-              }}
-            >
+            <h1 className="sl-hero-title" style={{ marginTop: 12, fontSize: 40, fontWeight: 800, letterSpacing: '-0.02em' }}>
               하루 10분, <span style={{ color: '#059669' }}>퀘스트처럼</span> 배우는 투자 문해력
             </h1>
             <p style={{ marginTop: 16, color: '#475569', lineHeight: 1.7 }}>
@@ -333,12 +311,7 @@ export default function StockLingoPromo() {
           </div>
 
           {/* 데모 미리보기 카드 */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            style={{ position: 'relative' }}
-          >
+          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} style={{ position: 'relative' }}>
             <Card style={{ boxShadow: '0 25px 50px -12px rgba(0,0,0,0.25)', borderRadius: 24, border: '1px solid #e2e8f0' }}>
               <CardHeader style={{ paddingBottom: 8 }}>
                 <CardTitle style={{ fontSize: 16, display: 'flex', alignItems: 'center', gap: 8 }}>
@@ -348,14 +321,7 @@ export default function StockLingoPromo() {
 
               <CardContent>
                 <Tabs defaultValue="quiz">
-                  <TabsList
-                    style={{
-                      display: 'grid',
-                      gridTemplateColumns: '1fr 1fr 1fr',
-                      width: '100%',
-                      borderRadius: 16,
-                    }}
-                  >
+                  <TabsList style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', width: '100%', borderRadius: 16 }}>
                     <TabsTrigger value="quiz">퀴즈</TabsTrigger>
                     <TabsTrigger value="cards">용어 카드</TabsTrigger>
                     <TabsTrigger value="puzzle">차트 퍼즐</TabsTrigger>
@@ -366,16 +332,7 @@ export default function StockLingoPromo() {
                       <div style={{ fontSize: 14, color: '#475569' }}>ETF 추적오차가 커지는 주요 원인 2가지를 고르시오.</div>
                       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 8 }}>
                         {['유동성 부족', '편입종목 수 과다', '마켓메이커 비활성', '상장폐지 임박'].map((s, i) => (
-                          <button
-                            key={i}
-                            style={{
-                              padding: '8px 12px',
-                              borderRadius: 12,
-                              border: '1px solid #e2e8f0',
-                              textAlign: 'left',
-                              background: '#fff',
-                            }}
-                          >
+                          <button key={i} style={{ padding: '8px 12px', borderRadius: 12, border: '1px solid #e2e8f0', textAlign: 'left', background: '#fff' }}>
                             {s}
                           </button>
                         ))}
@@ -389,17 +346,7 @@ export default function StockLingoPromo() {
                   <TabsContent value="cards" style={{ marginTop: 16 }}>
                     <div style={{ display: 'grid', rowGap: 12 }}>
                       {['베타(β)', '알파(α)', '샤프지수'].map((t, i) => (
-                        <div
-                          key={i}
-                          style={{
-                            padding: 12,
-                            borderRadius: 16,
-                            backgroundColor: '#f1f5f9',
-                            display: 'flex',
-                            alignItems: 'center',
-                            justifyContent: 'space-between',
-                          }}
-                        >
+                        <div key={i} style={{ padding: 12, borderRadius: 16, backgroundColor: '#f1f5f9', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
                           <div>
                             <div style={{ fontWeight: 600 }}>{t}</div>
                             <div style={{ fontSize: 12, color: '#475569' }}>한 줄 정의와 예시 보기</div>
@@ -411,27 +358,9 @@ export default function StockLingoPromo() {
                   </TabsContent>
 
                   <TabsContent value="puzzle" style={{ marginTop: 16 }}>
-                    <div
-                      style={{
-                        padding: 12,
-                        borderRadius: 16,
-                        backgroundImage: 'linear-gradient(135deg, #ecfdf5, #eef2ff)',
-                        border: '1px solid #e2e8f0',
-                      }}
-                    >
+                    <div style={{ padding: 12, borderRadius: 16, backgroundImage: 'linear-gradient(135deg, #ecfdf5, #eef2ff)', border: '1px solid #e2e8f0' }}>
                       <div style={{ fontSize: 14, fontWeight: 500 }}>봉차트에서 ‘가짜 돌파’ 케이스 찾기</div>
-                      <div
-                        style={{
-                          marginTop: 8,
-                          height: 128,
-                          borderRadius: 12,
-                          backgroundColor: '#fff',
-                          border: '1px dashed #cbd5e1',
-                          display: 'grid',
-                          placeItems: 'center',
-                          color: '#94a3b8',
-                        }}
-                      >
+                      <div style={{ marginTop: 8, height: 128, borderRadius: 12, backgroundColor: '#fff', border: '1px dashed #cbd5e1', display: 'grid', placeItems: 'center', color: '#94a3b8' }}>
                         미니 차트 퍼즐
                       </div>
                       <p style={{ marginTop: 8, fontSize: 12, color: '#64748b' }}>손가락으로 범위를 드래그하여 표시하세요.</p>
@@ -447,16 +376,7 @@ export default function StockLingoPromo() {
       {/* 특징 */}
       <section id="features" className="sl-section">
         <div className="sl-container">
-          <div
-            style={{
-              display: 'flex',
-              alignItems: 'flex-end',
-              justifyContent: 'space-between',
-              marginBottom: 24,
-              gap: 12,
-              flexWrap: 'wrap',
-            }}
-          >
+          <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', marginBottom: 24, gap: 12, flexWrap: 'wrap' }}>
             <h2 style={{ fontSize: 24, fontWeight: 700 }}>핵심 특징</h2>
             <Badge variant="outline" style={{ borderRadius: 9999 }}>
               <Trophy style={{ height: 14, width: 14, marginRight: 4 }} />
@@ -498,11 +418,7 @@ export default function StockLingoPromo() {
                   <DemoQuiz onComplete={() => { setCompleted(true) }} />
                 </DialogContent>
               </Dialog>
-              <Button
-                style={{ padding: '12px 16px', borderRadius: 16 }}
-                onClick={() => setOpen(true)}
-                variant="outline"
-              >
+              <Button style={{ padding: '12px 16px', borderRadius: 16 }} onClick={() => setOpen(true)} variant="outline">
                 바로 풀어보기
               </Button>
             </div>
@@ -642,18 +558,7 @@ export default function StockLingoPromo() {
       <footer style={{ paddingTop: 40, paddingBottom: 40, borderTop: '1px solid #e2e8f0' }}>
         <div className="sl-container" style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', gap: 16, flexWrap: 'wrap' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 8, fontSize: 14, color: '#475569' }}>
-            <div
-              style={{
-                height: 32,
-                width: 32,
-                borderRadius: 12,
-                backgroundColor: '#10b981',
-                display: 'grid',
-                placeItems: 'center',
-                color: '#fff',
-                fontWeight: 700,
-              }}
-            >
+            <div style={{ height: 32, width: 32, borderRadius: 12, backgroundColor: '#10b981', display: 'grid', placeItems: 'center', color: '#fff', fontWeight: 700 }}>
               S
             </div>
             <span>© {new Date().getFullYear()} StockLingo. 모든 권리 보유.</span>
@@ -662,7 +567,7 @@ export default function StockLingoPromo() {
         </div>
       </footer>
 
-      {/* ───────── 공용 반응형 유틸 ───────── */}
+      {/* ========= 공용 반응형 유틸 ========= */}
       <style jsx global>{`
         .sl-container {
           max-width: 1152px;
@@ -671,10 +576,7 @@ export default function StockLingoPromo() {
           padding-right: 16px;
           width: 100%;
         }
-        .sl-section {
-          padding-top: 64px;
-          padding-bottom: 64px;
-        }
+        .sl-section { padding-top: 64px; padding-bottom: 64px; }
 
         .sl-grid-2 {
           display: grid;
@@ -698,7 +600,6 @@ export default function StockLingoPromo() {
           grid-template-columns: 1fr 1fr 1fr;
           gap: 12px;
         }
-
         .sl-nav {
           display: flex;
           align-items: center;
@@ -725,9 +626,7 @@ export default function StockLingoPromo() {
             align-items: stretch !important;
             gap: 12px !important;
           }
-          .sl-header-actions {
-            justify-content: flex-start !important;
-          }
+          .sl-header-actions { justify-content: flex-start !important; }
         }
       `}</style>
     </div>
