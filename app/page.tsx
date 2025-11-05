@@ -275,6 +275,7 @@ return (
       <div
         style={{
           maxWidth: 1152, // ~ 6xl
+          width: '100vw',
           margin: '0 auto',
           paddingLeft: 16,
           paddingRight: 16,
