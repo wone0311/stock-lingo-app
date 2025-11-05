@@ -262,7 +262,95 @@ export default function StockLingoPromo() {
 return (
   <div style={{ minHeight: '100vh', backgroundColor: '#f8fafc' }}>
     {/* 헤더 */}
-    
+    <header
+  style={{
+    position: 'sticky',
+    top: 0,
+    zIndex: 30,
+    backdropFilter: 'blur(8px)',
+    background: 'rgba(255,255,255,0.7)',
+    borderBottom: '1px solid #e2e8f0',
+  }}
+>
+  <div
+    style={{
+      width: '100%',
+      maxWidth: 1152,       // 데모 섹션과 동일한 컨테이너 폭
+      margin: '0 auto',
+      paddingLeft: 16,
+      paddingRight: 16,
+      paddingTop: 12,
+      paddingBottom: 12,
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'space-between',
+      gap: 12,
+      flexWrap: 'wrap',     // 폭 좁아지면 줄바꿈
+    }}
+  >
+    {/* 좌측 로고/이름 */}
+    <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+      <div
+        style={{
+          height: 32,
+          width: 32,
+          borderRadius: 12,
+          backgroundColor: '#10b981',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          color: '#fff',
+          fontWeight: 700,
+          flex: '0 0 auto',
+        }}
+      >
+        S
+      </div>
+      <div style={{ fontWeight: 600, whiteSpace: 'nowrap' }}>StockLingo</div>
+      <Badge variant="secondary" style={{ marginLeft: 8, whiteSpace: 'nowrap' }}>
+        알파
+      </Badge>
+    </div>
+
+    {/* 네비게이션: 공간이 부족하면 자동으로 다음 줄로 내려감 */}
+    <nav
+      style={{
+        display: 'flex',
+        alignItems: 'center',
+        gap: 24,
+        fontSize: 14,
+        color: '#475569',
+        flex: '1 1 320px',   // 충분하면 가로 유지, 부족하면 내려감
+        minWidth: 240,       // 너무 좁아지지 않게 최소 폭
+        justifyContent: 'center', // 줄바꿈 시 가운데 정렬
+      }}
+    >
+      <a href="#features">특징</a>
+      <a href="#demo">데모</a>
+      <a href="#pricing">요금</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+
+    {/* 우측 액션 버튼들 */}
+    <div
+      style={{
+        display: 'flex',
+        alignItems: 'center',
+        gap: 8,
+        flex: '0 0 auto',   // 항상 내용 크기만큼만 차지
+      }}
+    >
+      <Button variant="ghost" style={{ borderRadius: 16, whiteSpace: 'nowrap' }}>
+        로그인
+      </Button>
+      <Button style={{ borderRadius: 16, whiteSpace: 'nowrap' }} onClick={() => setOpen(true)}>
+        <PlayCircle style={{ marginRight: 4, height: 16, width: 16 }} />
+        체험하기
+      </Button>
+    </div>
+  </div>
+</header>
+
 
     {/* 히어로 */}
     <section style={{ position: 'relative', overflow: 'hidden' }}>
