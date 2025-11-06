@@ -32,11 +32,11 @@ const LoginPage: React.FC = () => {
           style={{
             display: 'flex',
             alignItems: 'center',
-            backgroundColor: '#f0f0f0',
-            border: '1px solid #ccc',
+            backgroundColor: '#ffffff',
+            border: '1px solid #ffffff',
             padding: '10px 20px',
-            width: '300px',
-            borderRadius: '30px',
+            width: '500px',
+            borderRadius:'5px',
             fontSize: '16px',
             cursor: 'pointer',
           }}
