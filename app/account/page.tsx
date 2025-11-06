@@ -1,3 +1,5 @@
+'use client';  // 이 파일은 클라이언트 컴포넌트로 작동해야 하므로 추가
+
 import React, { useState, useEffect } from 'react';
 
 const LoginPage: React.FC = () => {
@@ -9,10 +11,12 @@ const LoginPage: React.FC = () => {
 
   const handleGoogleLogin = () => {
     console.log('Google login clicked');
+    // 여기에 Google 로그인 처리 로직 추가
   };
 
   const handleNaverLogin = () => {
     console.log('Naver login clicked');
+    // 여기에 Naver 로그인 처리 로직 추가
   };
 
   if (!isClient) {
