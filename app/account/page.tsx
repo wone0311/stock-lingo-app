@@ -1,4 +1,4 @@
-'use client'; // 이 파일은 클라이언트 컴포넌트로 작동해야 하므로 추가
+'use client';  // 이 파일은 클라이언트 컴포넌트로 작동해야 하므로 추가
 
 import React, { useState, useEffect } from 'react';
 
@@ -10,13 +10,17 @@ const LoginPage: React.FC = () => {
     const script = document.createElement('script');
     script.src = 'https://apis.google.com/js/platform.js?onload=onGapiLoad';
     script.async = true;
+    script.onload = () => {
+      console.log("Google API script loaded"); // 스크립트 로딩 완료 확인
+    };
     document.body.appendChild(script);
 
     // 구글 API가 로드된 후 onGapiLoad 함수 호출
     window.onGapiLoad = () => {
+      console.log("onGapiLoad triggered"); // onGapiLoad 호출 확인
       window.gapi.load('auth2', () => {
         window.gapi.auth2.init({
-          client_id: 'YOUR_GOOGLE_CLIENT_ID.apps.googleusercontent.com', // 실제 클라이언트 ID로 교체
+          client_id: 'YOUR_GOOGLE_CLIENT_ID.apps.googleusercontent.com',  // 실제 구글 클라이언트 ID로 교체
         });
       });
     };
