@@ -2,6 +2,7 @@
 
 import React, { useMemo, useState } from "react";
 import { motion } from "framer-motion";
+import Link from 'next/link'
 import { Check, LineChart, Sparkles, Trophy, Flame, Star, BarChart3, BookOpenText, ShieldCheck, PlayCircle, ArrowRight, ChevronRight, Clock, Users } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -336,10 +337,12 @@ return (
           <Button variant="ghost" style={{ borderRadius: 16 }}>
             로그인
           </Button>
-          <Button style={{ borderRadius: 16 }} onClick={() => setOpen(true)}>
-            <PlayCircle style={{ marginRight: 4, height: 16, width: 16 }} />
-            체험하기
-          </Button>
+          <Link href="/learn">
+            <Button style={{ borderRadius: 16 }} onClick={() => setOpen(true)}>
+              <PlayCircle style={{ marginRight: 4, height: 16, width: 16 }} />
+              체험하기
+            </Button>
+          </Link>
         </div>
       </div>
     </header>
