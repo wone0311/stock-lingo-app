@@ -25,8 +25,7 @@ const LoginPage: React.FC = () => {
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '100vh', backgroundColor: '#fff', padding: '20px' }}>
-      <h2 style={{ fontSize: '48px', fontWeight: 'bold', color: '#4B74FF' }}>NOL</h2>
-      <p style={{ fontSize: '18px', margin: '20px 0' }}>새로운 NOL에서 더 많은 즐거움과 혜택을 만나보세요!</p>
+      <h2 style={{ fontSize: '48px', fontWeight: 'bold', color: '#23e564ff' }}>Stocklingo</h2>
 
       <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
         <button
