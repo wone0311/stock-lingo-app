@@ -337,7 +337,8 @@ return (
           <Link href="/account">
             <Button variant="ghost" style={{ borderRadius: 16 }}>
               로그인
-            </Button></Link>
+            </Button>
+          </Link>
           <Link href="/learn">
             <Button style={{ borderRadius: 16 }} onClick={() => setOpen(true)}>
               <PlayCircle style={{ marginRight: 4, height: 16, width: 16 }} />
