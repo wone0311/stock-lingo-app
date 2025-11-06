@@ -1,6 +1,7 @@
 'use client';  // 이 파일은 클라이언트 컴포넌트로 작동해야 하므로 추가
 
 import React, { useState, useEffect } from 'react';
+import { Button } from "@/components/ui/button";
 
 const LoginPage: React.FC = () => {
   const [isClient, setIsClient] = useState(false);
@@ -28,7 +29,7 @@ const LoginPage: React.FC = () => {
       <h2 style={{ fontSize: '48px', fontWeight: 'bold', color: '#23e564ff' }}>Stocklingo</h2>
 
       <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
-        <button
+        <Button 
           style={{
             display: 'flex',
             alignItems: 'center',
@@ -40,11 +41,12 @@ const LoginPage: React.FC = () => {
             fontSize: '16px',
             cursor: 'pointer',
           }}
+          variant="ghost"
           onClick={handleGoogleLogin}
         >
           <img src="/google.png" alt="Google Logo" style={{ width: '24px', height: '24px', marginRight: '150px' }} />
           구글로 시작하기
-        </button>
+        </Button>
       </div>
 
       <div>
