@@ -20,7 +20,7 @@ const LoginPage: React.FC = () => {
       console.log("onGapiLoad triggered"); // onGapiLoad 호출 확인
       window.gapi.load('auth2', () => {
         window.gapi.auth2.init({
-          client_id: 'YOUR_GOOGLE_CLIENT_ID.apps.googleusercontent.com',  // 실제 구글 클라이언트 ID로 교체
+          client_id: '419224976055-910rlsqu1oi8i5lckd0ol4nm09obkf8i.apps.googleusercontent.com',  // 실제 구글 클라이언트 ID로 교체
         });
       });
     };
