@@ -33,7 +33,7 @@ const LoginPage: React.FC = () => {
             display: 'flex',
             alignItems: 'center',
             backgroundColor: '#ffffff',
-            border: '1px solid #ffffff',
+            border: '1px solid #000000',
             padding: '10px 20px',
             width: '500px',
             borderRadius:'5px',
@@ -42,7 +42,7 @@ const LoginPage: React.FC = () => {
           }}
           onClick={handleGoogleLogin}
         >
-          <img src="/google.png" alt="Google Logo" style={{ width: '24px', height: '24px', marginRight: '10px' }} />
+          <img src="/google.png" alt="Google Logo" style={{ width: '24px', height: '24px', marginRight: '150px' }} />
           구글로 시작하기
         </button>
       </div>
