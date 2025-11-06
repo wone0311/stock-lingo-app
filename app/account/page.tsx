@@ -31,7 +31,7 @@ const LoginPage: React.FC = () => {
           }}
           onClick={handleNaverLogin}
         >
-          <img src="/path/to/naver-logo.png" alt="Naver Logo" style={{ width: '24px', height: '24px', marginRight: '10px' }} />
+
           네이버로 시작하기
         </button>
 
@@ -49,7 +49,6 @@ const LoginPage: React.FC = () => {
           }}
           onClick={handleGoogleLogin}
         >
-          <img src="/path/to/google-logo.png" alt="Google Logo" style={{ width: '24px', height: '24px', marginRight: '10px' }} />
           구글로 시작하기
         </button>
       </div>
