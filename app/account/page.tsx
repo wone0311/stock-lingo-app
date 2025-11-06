@@ -40,27 +40,9 @@ const LoginPage: React.FC = () => {
             fontSize: '16px',
             cursor: 'pointer',
           }}
-          onClick={handleNaverLogin}
-        >
-          <img src="/path/to/naver-logo.png" alt="Naver Logo" style={{ width: '24px', height: '24px', marginRight: '10px' }} />
-          네이버로 시작하기
-        </button>
-
-        <button
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            backgroundColor: '#f0f0f0',
-            border: '1px solid #ccc',
-            padding: '10px 20px',
-            width: '300px',
-            borderRadius: '30px',
-            fontSize: '16px',
-            cursor: 'pointer',
-          }}
           onClick={handleGoogleLogin}
         >
-          <img src="/path/to/google-logo.png" alt="Google Logo" style={{ width: '24px', height: '24px', marginRight: '10px' }} />
+          <img src="/google.png" alt="Google Logo" style={{ width: '24px', height: '24px', marginRight: '10px' }} />
           구글로 시작하기
         </button>
       </div>
