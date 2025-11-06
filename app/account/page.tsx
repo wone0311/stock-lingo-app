@@ -1,15 +1,23 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 const LoginPage: React.FC = () => {
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);  // 클라이언트에서만 실행
+  }, []);
+
   const handleGoogleLogin = () => {
     console.log('Google login clicked');
-    // 여기에 Google 로그인 처리 로직 추가
   };
 
   const handleNaverLogin = () => {
     console.log('Naver login clicked');
-    // 여기에 Naver 로그인 처리 로직 추가
   };
+
+  if (!isClient) {
+    return null; // 클라이언트에서만 렌더링하도록 설정
+  }
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '100vh', backgroundColor: '#fff', padding: '20px' }}>
@@ -31,7 +39,7 @@ const LoginPage: React.FC = () => {
           }}
           onClick={handleNaverLogin}
         >
-
+          <img src="/path/to/naver-logo.png" alt="Naver Logo" style={{ width: '24px', height: '24px', marginRight: '10px' }} />
           네이버로 시작하기
         </button>
 
@@ -49,6 +57,7 @@ const LoginPage: React.FC = () => {
           }}
           onClick={handleGoogleLogin}
         >
+          <img src="/path/to/google-logo.png" alt="Google Logo" style={{ width: '24px', height: '24px', marginRight: '10px' }} />
           구글로 시작하기
         </button>
       </div>
