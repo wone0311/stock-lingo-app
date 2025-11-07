@@ -340,7 +340,7 @@ return (
             </Button>
           </Link>
           <Link href="/learn">
-            <Button style={{ borderRadius: 16 }} onClick={() => setOpen(true)}>
+            <Button style={{ borderRadius: 16 }}>
               <PlayCircle style={{ marginRight: 4, height: 16, width: 16 }} />
               체험하기
             </Button>

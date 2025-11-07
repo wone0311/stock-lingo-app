@@ -2,33 +2,30 @@
 
 import React, { useState, useEffect } from 'react';
 
-// window 객체에 google 네임스페이스를 사용하기 위한 타입 확장 (TypeScript)
-declare global {
-  interface Window {
-    google?: any; // google 객체
+declare global { //전역에 선언(window 자체가 전역에 선언되서 그럼)
+  interface Window {  //Window 속성에 추가
+    google?: any; // google 객체를 추가, 있어도 되고 없어도 됨
   }
 }
 
 const LoginPage: React.FC = () => {
-  // 1. isClient 문제 해결
-  //    useEffect에서 true로 설정하여 클라이언트 렌더링을 보장합니다.
   const [isClient, setIsClient] = useState(false);
 
-  // 2. 새로운 Google Identity Services(GIS) 스크립트 로드
-  useEffect(() => {
-    // 클라이언트에서만 실행되도록 설정
+  useEffect(() => {  //화면 랜더링 이후에 특정 작업을 수행하도록 하는 애가 useEffect임, 서버에선 실행 안됨
     setIsClient(true);
-
-    const script = document.createElement('script');
-    script.src = 'https://accounts.google.com/gsi/client';
+    {/* react는 <scirpt></script>를 직접 못쓰게 막아서 아래와 같은 방식으로 이용해야 함.
+        더불어 자바 스크립트가 코드를 수정하기 위해서는 html을 직접 조작 못하고 DOM을 통해서 가능함.
+        근데 아래서 보면 알듯이 저렇게 쓰면 귀찮잖아. 그래서 react가 return에다가는 html처럼 써도 되게 해준거임. 그건 자기가 알아서 dom으로 바꿔줌*/}
+    const script = document.createElement('script');   //dom api써서 부품 추가
+    script.src = 'https://accounts.google.com/gsi/client';  //gsi/client 파일 가져와서 실행하라는 명령임
     script.async = true;
     script.onload = () => {
-      // 스크립트 로드 완료 후 Google 버튼 초기화
+      // 스크립트 로드 완료 후 Google 버튼 초기화, onload 안쓰면 다운 전에 다음 코드가 실행되는 불상사가 생길 수 있음. 저걸 붙여서 loading 되면 실행함.
       initializeGoogleButton();
     };
-    document.body.appendChild(script);
+    document.body.appendChild(script); //<body>에 <Script> 붙이라는 소리임. 삽입하는 순간 src에서 gsi/client 파일 가져오고 초기화 진행함.
 
-    // 컴포넌트 언마운트 시 스크립트 제거 (선택 사항)
+    // LoginPage가 사라질때 제거해라.
     return () => {
       document.body.removeChild(script);
     };
@@ -36,19 +33,12 @@ const LoginPage: React.FC = () => {
 
   // 3. Google 로그인 버튼 초기화 함수 (새로운 방식)
   const initializeGoogleButton = () => {
-    if (!window.google) {
+    if (!window.google) { //gsi/client 실행과정에서 window 객체에 google 속성이 만들어짐
       console.error("Google GSI 스크립트가 로드되지 않았습니다.");
       return;
     }
 
     window.google.accounts.id.initialize({
-      // 🚨 [중요!] 'YOUR_GOOGLE_CLIENT_ID...' 이 부분은 *절대* 이대로 사용하면 안 됩니다.
-      // 1. 이것은 '자리 표시자'일 뿐, 실제 ID가 아닙니다.
-      // 2. 사용자님께서 Google Cloud Console(구글 클라우드 콘솔)에 접속하셔서
-      //    'OAuth 2.0 클라이언트 ID'를 직접 발급받으셔야 합니다.
-      // 3. 발급받은 실제 ID (예: 12345-abcde.apps.googleusercontent.com)를
-      //    이 아랫줄의 'YOUR_GOOGLE_CLIENT_ID...' 부분에 복사해서 덮어쓰세요.
-      // 4. 이 ID가 없거나 잘못되면 로그인이 작동하지 않습니다.
       client_id: '419224976055-910rlsqu1oi8i5lckd0ol4nm09obkf8i.apps.googleusercontent.com', // 🚨 본인의 클라이언트 ID로 꼭! 교체하세요.
       callback: handleGoogleLogin, // 로그인이 성공했을 때 호출될 콜백 함수
     });
@@ -90,8 +80,6 @@ const LoginPage: React.FC = () => {
       .then((response) => response.json())
       .then((data) => {
         console.log('Login Success:', data);
-        // 로그인 성공 후 페이지 리디렉션이나 추가 처리
-        // 예: window.location.href = '/dashboard';
       })
       .catch((error) => {
         console.error('Login Error:', error);
@@ -107,24 +95,9 @@ const LoginPage: React.FC = () => {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '100vh', backgroundColor: '#fff', padding: '20px' }}>
       <h2 style={{ fontSize: '48px', fontWeight: 'bold', color: '#23e564ff' }}>Stocklingo</h2>
-
-      {/*
-        [수정]
-        기존 <button> 대신 이 div에 Google 버튼이 렌더링됩니다.
-        스타일링은 구글에서 제공하는 옵션으로 조절하거나,
-        div를 감싸는 wrapper를 만들어 중앙 정렬할 수 있습니다.
-      */}
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '20px', marginTop: '30px' }}>
-        
         {/* 구글 로그인 버튼이 여기에 삽입됩니다. */}
-        <div id="google-login-button"></div>
-
-      </div>
-
-      <div>
-        <a href="/login/email" style={{ marginTop: '20px', fontSize: '16px', color: '#007bff', textDecoration: 'none' }}>
-          이메일로 시작하기 &gt;
-        </a>
+        <div id="google-login-button">구글 계정으로 시작하기</div>
       </div>
     </div>
   );
