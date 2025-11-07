@@ -15,12 +15,12 @@ const LoginPage: React.FC = () => {
     setIsClient(true);
     {/* react는 <scirpt></script>를 직접 못쓰게 막아서 아래와 같은 방식으로 이용해야 함.
         더불어 자바 스크립트가 코드를 수정하기 위해서는 html을 직접 조작 못하고 DOM을 통해서 가능함.
-        근데 아래서 보면 알듯이 저렇게 쓰면 귀찮잖아. 그래서 react가 return에다가는 html처럼 써도 되게 해준거임. 그건 자기가 알아서 dom으로 바꿔줌*/}
+        근데 아래서 보면 알듯이 저렇게 쓰면 귀찮잖아. 그래서 react가 return에다가는 html처럼 써도 되게 해준거임. 그건 자기가 알아서 Dom으로 바꿔줌*/}
     const script = document.createElement('script');   //dom api써서 부품 추가
     script.src = 'https://accounts.google.com/gsi/client';  //gsi/client 파일 가져와서 실행하라는 명령임
     script.async = true;
     script.onload = () => {
-      // 스크립트 로드 완료 후 Google 버튼 초기화, onload 안쓰면 다운 전에 다음 코드가 실행되는 불상사가 생길 수 있음. 저걸 붙여서 loading 되면 실행함.
+      // 스크립트 로드 완료 후 Google 버튼 초기화 함수 실행, onload 안쓰면 다운 전에 다음 코드가 실행되는 불상사가 생길 수 있음. 저걸 붙여서 loading 되면 실행함.
       initializeGoogleButton();
     };
     document.body.appendChild(script); //<body>에 <Script> 붙이라는 소리임. 삽입하는 순간 src에서 gsi/client 파일 가져오고 초기화 진행함.
