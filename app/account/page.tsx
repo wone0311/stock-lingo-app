@@ -97,7 +97,7 @@ const LoginPage: React.FC = () => {
       <h2 style={{ fontSize: '48px', fontWeight: 'bold', color: '#23e564ff' }}>Stocklingo</h2>
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '20px', marginTop: '30px' }}>
         {/* 구글 로그인 버튼이 여기에 삽입됩니다. */}
-        <div id="google-login-button">구글 계정으로 시작하기</div>
+        <div id="google-login-button"></div>
       </div>
     </div>
   );
