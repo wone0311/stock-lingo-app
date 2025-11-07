@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 
 declare global { //전역에 선언(window 자체가 전역에 선언되서 그럼)
   interface Window {  //Window 속성에 추가
@@ -10,6 +11,7 @@ declare global { //전역에 선언(window 자체가 전역에 선언되서 그�
 
 const LoginPage: React.FC = () => {
   const [isClient, setIsClient] = useState(false);
+  const router = useRouter();
 
   useEffect(() => {  //화면 랜더링 이후에 특정 작업을 수행하도록 하는 애가 useEffect임, 서버에선 실행 안됨
     setIsClient(true);
@@ -63,7 +65,7 @@ const LoginPage: React.FC = () => {
     const idToken = response.credential;
 
     // ID Token을 백엔드로 전송하여 로그인 처리
-    fetch('/api/auth/google', { //'~'라는 백앤드 서버의 주소와 통신하겠다는 소리임. ~는 내가 만들어야 하는거임.
+    fetch('/api/auth/stocklingo-server', { //'~'라는 백앤드 서버의 주소와 통신하겠다는 소리임. ~는 내가 만들어야 하는거임.
       method: 'POST',  //전송
       headers: {
         'Content-Type': 'application/json',  //http는 텍스트만 전달 가능해서, json형식으로 지정함.
@@ -73,6 +75,7 @@ const LoginPage: React.FC = () => {
       .then((response) => response.json()) //응답오면 그걸 자바스크립트 객체로 수정함.
       .then((data) => { //그 후 그 안에 data영역에서 우리가 필요한 걸 찾아야함.
         console.log('Login Success:', data);
+        router.push('/');
       })
       .catch((error) => {
         console.error('Login Error:', error);
