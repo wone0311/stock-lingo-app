@@ -43,10 +43,8 @@ const LoginPage: React.FC = () => {
       callback: handleGoogleLogin, // 로그인이 성공했을 때 호출될 콜백 함수
     });
 
-    // 4. 로그인 버튼 렌더링
-    //    'google-login-button' ID를 가진 div에 버튼을 그립니다.
-    window.google.accounts.id.renderButton(
-      document.getElementById('google-login-button'),
+    window.google.accounts.id.renderButton( //구글이 디자인한 'Google로 로그인' 버튼을 그려줘!"라는 함수임.
+      document.getElementById('google-login-button'), //'google-login-button' ID를 가진 div에 버튼을  그립니다. 문자 그대로 Id를 통해서 가져와라임
       {
         theme: 'outline',
         size: 'large',
@@ -57,28 +55,23 @@ const LoginPage: React.FC = () => {
         width: '300', // 버튼 너비를 픽셀 단위로 설정
       }
     );
-
-    // 원클릭 로그인(One Tap) UI (선택 사항이지만 권장됨)
-    // window.google.accounts.id.prompt(); 
   };
 
   // 5. 로그인 성공 시 콜백 함수 (새로운 방식)
-  //    gapi.auth2.signIn() 대신 콜백으로 ID 토큰을 직접 받습니다.
-  const handleGoogleLogin = (response: any) => {
+  const handleGoogleLogin = (response: any) => {  //response에 구글이 넘겨준 정보 있음.
     // response.credential 이 ID 토큰입니다.
     const idToken = response.credential;
-    console.log('Google ID Token:', idToken);
 
     // ID Token을 백엔드로 전송하여 로그인 처리
-    fetch('/api/auth/google', {
-      method: 'POST',
+    fetch('/api/auth/google', { //'~'라는 백앤드 서버의 주소와 통신하겠다는 소리임. ~는 내가 만들어야 하는거임.
+      method: 'POST',  //전송
       headers: {
-        'Content-Type': 'application/json',
+        'Content-Type': 'application/json',  //http는 텍스트만 전달 가능해서, json형식으로 지정함.
       },
-      body: JSON.stringify({ idToken }),
+      body: JSON.stringify({ idToken }),  //그래서 보낼 토큰을 json형식으로 바꾼거임.
     })
-      .then((response) => response.json())
-      .then((data) => {
+      .then((response) => response.json()) //응답오면 그걸 자바스크립트 객체로 수정함.
+      .then((data) => { //그 후 그 안에 data영역에서 우리가 필요한 걸 찾아야함.
         console.log('Login Success:', data);
       })
       .catch((error) => {
