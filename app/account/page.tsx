@@ -42,7 +42,7 @@ const LoginPage: React.FC = () => {
 
     window.google.accounts.id.initialize({
       client_id: '419224976055-910rlsqu1oi8i5lckd0ol4nm09obkf8i.apps.googleusercontent.com', // 🚨 본인의 클라이언트 ID로 꼭! 교체하세요.
-      callback: handleGoogleLogin, // 로그인이 성공했을 때 호출될 콜백 함수
+      callback: handleGoogleLogin, // 로그인이 성공했을 때 호출될 콜백 함수, 되면 여기로 연락줘의 느낌임
     });
 
     window.google.accounts.id.renderButton( //구글이 디자인한 'Google로 로그인' 버튼을 그려줘!"라는 함수임.
@@ -72,7 +72,7 @@ const LoginPage: React.FC = () => {
       },
       body: JSON.stringify({ idToken }),  //그래서 보낼 토큰을 json형식으로 바꾼거임.
     })
-      .then((response) => response.json()) //응답오면 그걸 자바스크립트 객체로 수정함.
+      .then((response) => response.json()) //비동기 방식, 응답오면 그걸 자바스크립트 객체로 수정함.
       .then((data) => { //그 후 그 안에 data영역에서 우리가 필요한 걸 찾아야함.
         console.log('Login Success:', data);
         router.push('/');
